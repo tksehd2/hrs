@@ -8,4 +8,4 @@ obj
 Assets/hrs_resources
 
 # Ignore Files
-
+*.csproj
