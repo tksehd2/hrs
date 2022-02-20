@@ -19,8 +19,8 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// エラーログを出す
-		/// <param name="callerFrameIndex"> 呼ぶフレームIndex </param>
 		/// </summary>
+		/// <param name="callerFrameIndex"> 呼ぶフレームIndex </param>
 		public PosInfos(int callerFrameIndex = 1)
 		{
 #if HRS_DEBUG
@@ -35,6 +35,7 @@ namespace Hrs.Util
 		/// <summary> 
 		/// 文字列変換
 		/// </summary>
+		/// <returns>このクラスが生成された時の位置情報</returns>
 		public override string ToString()
 		{
 #if HRS_DEBUG

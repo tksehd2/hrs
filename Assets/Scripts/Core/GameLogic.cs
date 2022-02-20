@@ -35,8 +35,8 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// コンストラクタ
-		/// <param name="setting"> 設定情報 </param>
 		/// </summary>
+		/// <param name="setting"> 設定情報 </param>
 		public GameLogic(ISetting setting) : base(false)
 		{
 			// 開始シーン設定
@@ -106,8 +106,8 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// コマンド通達
-		/// <param name="command"> コマンド </param>
 		/// </summary>
+		/// <param name="command"> コマンド </param>
 		public void NotifyCommand(ICommand command)
 		{
 			_currentSceneLogic.CommandProcess(command);

@@ -18,8 +18,9 @@ namespace Hrs.Main
 
 		/// <summary> 
 		/// シーンビュー作成
-		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
+		/// <param name="sceneLogic"> シーンロジック </param>
+		/// <returns>作成したシーンビュー</returns>
 		protected override BaseSceneView CreateSceneView(IBaseSceneLogicForTypeCheck sceneLogic)
 		{
 			if (sceneLogic.GetType() == typeof(MenuSceneLogic))

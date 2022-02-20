@@ -29,9 +29,9 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// コンストラクター
+		/// </summary>
 		/// <param name="setting"> 設定情報 </param>
 		/// <param name="gameView"> ゲームビュー </param>
-		/// </summary>
 		public GameLoop(ISetting setting, GameView gameView) : base(true)
 		{
 			_frameManager = new FrameManager(setting.Fps);
@@ -114,6 +114,7 @@ namespace Hrs.Core
 		/// <summary> 
 		/// 現在SceneView取得
 		/// </summary>
+		/// <returns>シーンビュー</returns>
 		public BaseSceneView GetCurrentSceneView()
 		{
 			return _gameView.GetCurrentSceneView();

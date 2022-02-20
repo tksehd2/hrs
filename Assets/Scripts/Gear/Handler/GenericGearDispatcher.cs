@@ -26,10 +26,10 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 初期化
+		/// </summary>
 		/// <param name="methodType"> メソッドタイプ </param>
 		/// <param name="once"> １回だけ行うかどうか </param>
 		/// <param name="dispatcherPos"> Dispatcherの位置 </param>
-		/// </summary>
 		public GenericGearDispatcher(AddBehavior.eMethodType methodType, bool once, PosInfos dispatcherPos)
 		{
 			_methodType = methodType;
@@ -50,9 +50,10 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// Handler追加（削除用のCancelKeyが返る）
+		/// </summary>
 		/// <param name="func"> 実行する処理 </param>
 		/// <param name="addPos"> 追加された時の位置 </param>
-		/// </summary>
+		/// <returns>ハンドラー</returns>
 		public CancelKey Add(TFunc func, PosInfos addPos)
 		{
 			GearDispatcherHandler<TFunc> handler = new GearDispatcherHandler<TFunc>(func, addPos);
@@ -62,8 +63,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// Handler削除（追加時に得たCancelKeyを使う）
-		/// <param name="key"> キャンセルキー </param>
 		/// </summary>
+		/// <param name="key"> キャンセルキー </param>
 		public void Remove(CancelKey key)
 		{
 			if (_executeLock)
@@ -92,9 +93,9 @@ namespace Hrs.Gear.Handler
 		/// <summary>
 		/// 実行
 		/// 同時実行されたときにおかしくならないようにいったんローカルに対比してから実行している
+		/// </summary>
 		/// <param name="treat"> 処理するAction </param>
 		/// <param name="executePos"> 実行した時の位置 </param>
-		/// </summary>
 		public void Execute(Action<GearDispatcherHandler<TFunc>> treat, PosInfos executePos)
 		{
 			if (_executeLock)

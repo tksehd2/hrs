@@ -50,8 +50,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// 描画処理
-		/// <param name="deltaFrame"> 経過フレーム </param>
 		/// </summary>
+		/// <param name="deltaFrame"> 経過フレーム </param>
 		public virtual void Render(int deltaFrame)
 		{
 
@@ -59,8 +59,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// コマンド通知
-		/// <param name="command"> コマンド </param>
 		/// </summary>
+		/// <param name="command"> コマンド </param>
 		public virtual void NotifyCommand(ICommand command)
 		{
 			HrsLog.Debug("NotifyCommand");

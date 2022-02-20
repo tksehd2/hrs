@@ -26,9 +26,9 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 追加メソッド（メソッドタイプを指定する）
+		/// </summary>
 		/// <param name="methodType"> メソッドタイプ </param>
 		/// <param name="newProcess"> 行う処理 </param>
-		/// </summary>
 		public static void Execute<T>(eMethodType methodType, List<T> list, T newProcess)
 		{
 			switch(methodType)
@@ -52,8 +52,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// １つだけ
-		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
+		/// <param name="newProcess"> 行う処理 </param>
 		private static void LastOnly<T>(List<T> list, T newProcess)
 		{
 			int last = list.Count - 1;
@@ -63,8 +63,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 末尾追加
-		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
+		/// <param name="newProcess"> 行う処理 </param>
 		private static void AddTail<T>(List<T> list, T newProcess)
 		{
 			list.Add(newProcess);
@@ -72,8 +72,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 先頭追加
-		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
+		/// <param name="newProcess"> 行う処理 </param>
 		private static void AddHead<T>(List<T> list, T newProcess)
 		{
 			list.Insert(0, newProcess);
@@ -81,8 +81,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 空なら追加？？？
-		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
+		/// <param name="newProcess"> 行う処理 </param>
 		private static void AddError<T>(List<T> list, T newProcess)
 		{
 			if (list.Count == 0)

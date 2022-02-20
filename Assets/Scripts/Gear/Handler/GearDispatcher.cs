@@ -14,10 +14,10 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 初期化
+		/// </summary>
 		/// <param name="addBehavior"> メソッドタイプ </param>
 		/// <param name="once"> １回だけ行うかどうか </param>
 		/// <param name="pos"> 位置確認用クラス </param>
-		/// </summary>
 		public GearDispatcher(AddBehavior.eMethodType addBehavior, bool once, PosInfos pos)
 		{
 			GenericGearDispatcher = new GenericGearDispatcher<Action>(addBehavior, once, pos);
@@ -25,9 +25,9 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 追加（削除用のCancelKeyが返る）
+		/// </summary>
 		/// <param name="func"> 実行する処理 </param>
 		/// <param name="addPos"> 位置確認用クラス </param>
-		/// </summary>
 		public CancelKey Add(Action func, PosInfos addPos)
 		{
 			return GenericGearDispatcher.Add(func, addPos);
@@ -35,8 +35,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 削除
-		/// <param name="key"> キャンセルキー </param>
 		/// </summary>
+		/// <param name="key"> キャンセルキー </param>
 		public void Remove(CancelKey key)
 		{
 			GenericGearDispatcher.Remove(key);
@@ -44,8 +44,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 実行
-		/// <param name="executePos"> 位置確認用クラス </param>
 		/// </summary>
+		/// <param name="executePos"> 位置確認用クラス </param>
 		public void Execute(PosInfos executePos)
 		{
 			GenericGearDispatcher.Execute(Trat, executePos);
@@ -53,8 +53,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 実行本体
-		/// <param name="handler"> ハンドラー </param>
 		/// </summary>
+		/// <param name="handler"> ハンドラー </param>
 		private void Trat(GearDispatcherHandler<Action> handler)
 		{
 			handler._func();

@@ -38,8 +38,8 @@ namespace Hrs.Main
 
 		/// <summary>
 		/// ボタンのコマンド処理（Tap）
-		/// <param name="commandId"> コマンドId </param>
 		/// </summary>
+		/// <param name="commandId"> コマンドId </param>
 		protected override void TapButtonCommandProcess(string commandId)
 		{
 			base.TapButtonCommandProcess(commandId);

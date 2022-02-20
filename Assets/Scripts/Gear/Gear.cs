@@ -65,8 +65,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 自身の子Gearを設定しつつ、子Diffuserの親に自身のDiffuserを設定させる
-		/// <param name="gear"> 追加するギア </param>
 		/// </summary>
+		/// <param name="gear"> 追加するギア </param>
 		public void AddChildGear(Gear gear) 
 		{
 			_childGearList.Add(gear); // 子Gearに追加
@@ -75,8 +75,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		// 子のDiffuserの親を空に設定したうえで、子Gearをリストからを削除
-		/// <param name="gear"> 削除するギア </param>
 		/// </summary>
+		/// <param name="gear"> 削除するギア </param>
 		public void RemoveChildGear(Gear gear) 
 		{
 			gear._diffuser.SetParent(null); // 子のdiffuserの親を空に
@@ -85,9 +85,9 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// diffuse。Diffuserにインスタンスを登録
+		/// </summary>
 		/// <param name="diffuseInstance"> DiffuserのInstance </param>
 		/// <param name="clazz"> クラスタイプ </param>
-		/// </summary>
 		public void Diffuse(object diffuseInstance, Type clazz) 
 		{
 			_diffuser.Add(diffuseInstance, clazz);
@@ -95,8 +95,9 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// absorb。Diffuserから該当クラスのインスタンスを取得
-		/// <param name="pos"> 位置 </param>
 		/// </summary>
+		/// <param name="pos"> 位置 </param>
+		/// <returns>データ</returns>
 		public T Absorb<T>(PosInfos pos) 
 		{
 			if (_holder == null) return default(T);
@@ -210,9 +211,9 @@ namespace Hrs.Gear
 		// ==== 以下、handlerへの追加処理 ====
 		/// <summary>
 		/// 準備処理追加
+		/// </summary>
 		/// <param name="func"> 処理 </param>
 		/// <param name="pos"> 位置 </param>
-		/// </summary>
 		public void AddPreparationProcess(Action func, PosInfos pos) 
 		{
 			_preparationDispatcher.Add(func, pos);
@@ -220,9 +221,9 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 開始処理追加
+		/// </summary>
 		/// <param name="func"> 処理 </param>
 		/// <param name="pos"> 位置 </param>
-		/// </summary>
 		public void AddStartProcess(Action func, PosInfos pos) 
 		{
 			_startDispatcher.Add(func, pos);
@@ -230,9 +231,10 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 修了処理追加
+		/// </summary>
 		/// <param name="func"> 処理 </param>
 		/// <param name="pos"> 位置 </param>
-		/// </summary>
+		/// <returns>追加した処理</returns>
 		public CancelKey AddEndProcess(Action func, PosInfos pos) 
 		{
 			if (!CheckPhaseBeforeDispose()) 
@@ -284,8 +286,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 解除
-		/// <param name="isDisposing"> 解除中か </param>
 		/// </summary>
+		/// <param name="isDisposing"> 解除中か </param>
 		private void Dispose(bool isDisposing) 
 		{
 			if (_phase != eGearPhase.Dispose) 

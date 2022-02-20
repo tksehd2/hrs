@@ -21,8 +21,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// コンストラクタ
-		/// <param name="holder"> このDiffuserを持っているやつ </param>
 		/// </summary>
+		/// <param name="holder"> このDiffuserを持っているやつ </param>
 		public Diffuser(object holder)
 		{
 			_holder = holder;
@@ -32,8 +32,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 親のdiffuserの登録
-		/// <param name="parent"> 親 </param>
 		/// </summary>
+		/// <param name="parent"> 親 </param>
 		public void SetParent(Diffuser parent)
 		{
 			_parent = parent;
@@ -41,9 +41,9 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// absorb用にインスタンスを登録する
+		/// </summary>
 		/// <param name="diffuseInstance"> DiffuserのInstance </param>
 		/// <param name="clazz"> クラスタイプ </param>
-		/// </summary>
 		public void Add(object diffuseInstance, Type clazz)
 		{
 			string className = clazz.ToString();
@@ -56,8 +56,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 登録されたインスタンスを削除（ほぼ使わない）
-		/// <param name="clazz"> クラスタイプ </param>
 		/// </summary>
+		/// <param name="clazz"> クラスタイプ </param>
 		public void Remove(Type clazz)
 		{
 			string className = clazz.ToString();
@@ -66,8 +66,9 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// クラス名で指定したインスタンスを取得（初期ステップ）
-		/// <param name="pos"> 位置 </param>
 		/// </summary>
+		/// <param name="pos"> 位置 </param>
+		/// <returns>データ</returns>
 		public T Get<T>(PosInfos pos)
 		{
 			Type clazz = typeof(T);
@@ -77,10 +78,11 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 登録されたインスタンスを削除（ほぼ使わない）
+		/// </summary>
 		/// <param name="className"> クラス名 </param>
 		/// <param name="startDiffuser"> 検索を開始するDiffuser </param>
 		/// <param name="pos"> 位置 </param>
-		/// </summary>
+		/// <returns>データ</returns>
 		private T GetWithClassName<T>(string className, Diffuser startDiffuser, PosInfos pos)
 		{
 			if (_instanceClassDictionary.ContainsKey(className))
@@ -138,8 +140,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 解除
-		/// <param name="isDisposing"> 解除中かどうか </param>
 		/// </summary>
+		/// <param name="isDisposing"> 解除中かどうか </param>
 		private void Dispose(bool isDisposing)
 		{
 			if (!_disposed)

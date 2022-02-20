@@ -24,8 +24,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// コンストラクタは使えないので、使うときは手動でこの関数をた叩いて下さい。
-		/// <param name="isRoot"> ルートかどうか </param>
 		/// </summary>
+		/// <param name="isRoot"> ルートかどうか </param>
 		public void InitDI(bool isRoot)
 		{
 			_gear = new Gear(this);

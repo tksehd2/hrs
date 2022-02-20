@@ -8,10 +8,15 @@ namespace Hrs.Util
 	/// </summary>
 	public static class HrsLogLevelDefine
 	{
+		/// <summary> デバック </summary>
 		public const uint Debug = 1;     // 0001
+		/// <summary> 情報 </summary>
 		public const uint Info = 2;  // 0010
+		/// <summary> 警告 </summary>
 		public const uint Warning = 4; // 0100
+		/// <summary> エラー </summary>
 		public const uint Error = 8;     // 1000
+		/// <summary> 全部 </summary>
 		public const uint All = Debug | Info | Warning | Error;
 	}
 
@@ -31,9 +36,10 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// プリピックス取得
+		/// </summary>
 		/// <param name="colorName"> 色名 </param>
 		/// <param name="level"> ログレベル </param>
-		/// </summary>
+		/// <returns>プリピックス</returns>
 		static string GetLogPrefix(string colorName, string level)
 		{
 			return String.Format("<b> <color='{0}'>[{1}][{2}] </color> </b>",
@@ -44,8 +50,8 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// 初期化
-		/// <param name="displayLogLevel"> 出力するログレベル </param>
 		/// </summary>
+		/// <param name="displayLogLevel"> 出力するログレベル </param>
 		public static void Init(uint displayLogLevel)
 		{
 			_prefixDic = new Dictionary<uint, string>()
@@ -69,8 +75,8 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// 情報ログを出す
-		/// <param name="message"> メッセージ </param>
 		/// </summary>
+		/// <param name="message"> メッセージ </param>
 		public static void Info(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Info);
@@ -78,8 +84,8 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// デバッグログを出す
-		/// <param name="message"> メッセージ </param>
 		/// </summary>
+		/// <param name="message"> メッセージ </param>
 		public static void Debug(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Debug);
@@ -87,8 +93,8 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// 警告ログを出す
-		/// <param name="message"> メッセージ </param>
 		/// </summary>
+		/// <param name="message"> メッセージ </param>
 		public static void Warning(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Warning);
@@ -96,8 +102,8 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// エラーログを出す
-		/// <param name="message"> メッセージ </param>
 		/// </summary>
+		/// <param name="message"> メッセージ </param>
 		public static void Error(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Error);
@@ -105,9 +111,9 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// メッセージを出す
+		/// </summary>
 		/// <param name="message"> メッセージ </param>
 		/// <param name="level"> 出力するログレベル </param>
-		/// </summary>
 		private static void ShowMessage(string message, uint level)
 		{
 			if (!CanShowLogLevel(level))
@@ -121,8 +127,9 @@ namespace Hrs.Util
 
 		/// <summary>
 		/// 出力可能なレベルかチェック
-		/// <param name="level"> 出力するログレベル </param>
 		/// </summary>
+		/// <param name="level"> 出力するログレベル </param>
+		/// <returns>出力可能かどうか</returns>
 		private static bool CanShowLogLevel(uint level)
 		{
 			return (_displayLogLevel & level) == level;

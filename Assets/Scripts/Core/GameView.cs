@@ -48,8 +48,8 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// 描画処理
-		/// <param name="deltaFrame"> フレーム差分 </param>
 		/// </summary>
+		/// <param name="deltaFrame"> フレーム差分 </param>
 		public void Render(int deltaFrame)
 		{
 			_currentSceneView.Render(deltaFrame);
@@ -58,6 +58,7 @@ namespace Hrs.Core
 		/// <summary> 
 		/// 現在SceneView取得
 		/// </summary>
+		/// <returns>現在シーンビュー</returns>
 		public BaseSceneView GetCurrentSceneView()
 		{
 			return _currentSceneView;
@@ -65,14 +66,16 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// SceneView作成
-		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
+		/// <param name="sceneLogic"> シーンロジック </param>
+		/// <returns>作成されたシーンビュー</returns>
 		abstract protected BaseSceneView CreateSceneView(IBaseSceneLogicForTypeCheck sceneLogic);
 
 		/// <summary> 
 		/// SceneView設定
-		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
+		/// <param name="sceneLogic"> シーンロジック </param>
+		/// <returns>現在シーンビュー</returns>
 		public IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogicForTypeCheck sceneLogic)
 		{
 			// SceneView生成
@@ -86,8 +89,9 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// SceneView設定
-		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
+		/// <param name="sceneLogic"> シーンロジック </param>
+		/// <returns>現在シーンビュー</returns>
 		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogicForTypeCheck sceneLogic)
 		{
 			// シーンを親から外す

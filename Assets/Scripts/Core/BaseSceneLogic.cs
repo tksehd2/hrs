@@ -91,8 +91,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ViewOrderを設定する
-		/// <param name="sceneView"> シーンビュー </param>
 		/// </summary>
+		/// <param name="sceneView"> シーンビュー </param>
 		public void SetSceneViewOrder(IBaseSceneViewOrder sceneView)
 		{
 			_sceneView = (TView)sceneView;
@@ -100,8 +100,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// コマンド処理
-		/// <param name="command"> コマンド </param>
 		/// </summary>
+		/// <param name="command"> コマンド </param>
 		public void CommandProcess(ICommand command)
 		{
 			Type commandType = command.GetType();
@@ -118,8 +118,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ボタンのコマンド処理
-		/// <param name="buttonCommand"> ボタンのコマンド </param>
 		/// </summary>
+		/// <param name="buttonCommand"> ボタンのコマンド </param>
 		protected void ButtonCommandProcess(ButtonCommand buttonCommand)
 		{
 			switch (buttonCommand.TouchKind)
@@ -131,8 +131,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ボタンのコマンド処理（Tap）
-		/// <param name="commandId"> コマンドId </param>
 		/// </summary>
+		/// <param name="commandId"> コマンドId </param>
 		protected virtual void TapButtonCommandProcess(string commandId)
 		{
 
@@ -140,8 +140,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ボタンのコマンド処理（LongHold）
-		/// <param name="commandId"> コマンドId </param>
 		/// </summary>
+		/// <param name="commandId"> コマンドId </param>
 		protected virtual void LongHoldButtonCommandProcess(string commandId)
 		{
 

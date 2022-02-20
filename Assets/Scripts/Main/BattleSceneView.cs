@@ -37,8 +37,8 @@ namespace Hrs.Main
 
 		/// <summary>
 		/// 描画処理
-		/// <param name="deltaFrame"> 差分フレーム </param>
 		/// </summary>
+		/// <param name="deltaFrame"> 差分フレーム </param>
 		public override void Render(int deltaFrame)
 		{
 			base.Render(deltaFrame);

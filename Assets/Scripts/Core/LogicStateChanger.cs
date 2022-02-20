@@ -39,8 +39,8 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// コマンド通知
-		/// <param name="command"> コマンド </param>
 		/// </summary>
+		/// <param name="command"> コマンド </param>
 		public void NotifyCommand(ICommand command)
 		{
 			_gameLogic.NotifyCommand(command);

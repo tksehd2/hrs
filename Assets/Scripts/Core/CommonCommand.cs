@@ -33,9 +33,11 @@
 		/// <summary> ボタンのタッチ種類 </summary>
 		public EButtonTouchKind TouchKind => _touchKind;
 
-		/// <summary> コンストラクタ 
-		/// <param name="touchKind"> ボタンのタッチ種類 </param>
+		/// <summary> 
+		/// コンストラクタ 
 		/// </summary>
+		/// <param name="Id"> コマンドId </param>
+		/// <param name="touchKind"> ボタンのタッチ種類 </param>
 		public ButtonCommand(string id, EButtonTouchKind touchKind)
 		{
 			_id = id;

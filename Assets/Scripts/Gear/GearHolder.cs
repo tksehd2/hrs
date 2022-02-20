@@ -18,8 +18,8 @@ namespace Hrs.Gear
 		/// コンストラクタ
 		/// Gearを必ず保持する
 		/// 大親の時はisrootをtrueにすること
-		/// <param name="isRoot"> ルートかどうか </param>
 		/// </summary>
+		/// <param name="isRoot"> ルートかどうか </param>
 		public GearHolder(bool isRoot) 
 		{
 			_gear = new Gear(this);

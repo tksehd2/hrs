@@ -15,9 +15,9 @@ namespace Hrs.Gear.Handler
 
 		/// <summary> 
 		/// コンストラクタ―
+		/// </summary>
 		/// <param name="func"> 処理行う関数ポインター </param>
 		/// <param name="addPos"> 位置確認用クラス </param>
-		/// </summary>
 		public GearDispatcherHandler(TFunc func, PosInfos addPos)
 		{
 			_func = func;

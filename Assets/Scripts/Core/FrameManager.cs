@@ -22,8 +22,8 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// コンストラクタ
-		/// <param name="fps"> FPS </param>
 		/// </summary>
+		/// <param name="fps"> FPS </param>
 		public FrameManager(int fps) : base(false)
 		{
 			FPS = fps;
@@ -41,6 +41,7 @@ namespace Hrs.Core
 		/// <summary>
 		/// Frameを計算する
 		/// </summary>
+		/// <returns>`フレーム差分 </returns>
 		public int CalcDeltaFrame()
 		{
 			int deltaFrame = 0;
