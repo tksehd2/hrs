@@ -5,10 +5,17 @@ using Hrs.Gear;
 
 namespace Hrs.Example
 {
+    /// <summary>
+    /// «®«¢ÖÇð¹
+    /// </summary>
     public class GearExample : MonoBehaviour
     {
+        /// <summary> «ë?«È«®«¢ </summary>
         GearRoot gearRoot = null;
-        // Start is called before the first frame update
+
+        /// <summary>
+        /// ËÒã·
+        /// </summary>
         void OnEnable()
         {
             HrsLog.Init(HrsLogLevelDefine.All);
@@ -16,6 +23,9 @@ namespace Hrs.Example
             gearRoot.InitGear();
         }
 
+        /// <summary>
+        /// áóÖõ
+        /// </summary>
         private void OnDisable()
         {
             gearRoot.AllDisposeGear();
@@ -23,11 +33,19 @@ namespace Hrs.Example
         }
     }
 
+    /// <summary>
+    /// «ë?«È«®«¢
+    /// </summary>
     public class GearRoot : GearHolder
     {
+        /// <summary> í­ÍêA </summary>
         private ChildA childA = null;
+        /// <summary> í­ÍêB </summary>
         private ChildB childB = null;
 
+        /// <summary>
+        /// «³«ó«¹«È«é«¯«¿¡ª
+        /// </summary>
         public GearRoot() : base(true)
         {
             childA = new ChildA();
@@ -37,22 +55,27 @@ namespace Hrs.Example
             _gear.AddChildGear(childB.GetGear());
         }
 
+        /// <summary>
+        /// ?ß¤
+        /// </summary>
         protected override void DiffuseGearProcess()
         {
             base.DiffuseGearProcess();
             _gear.Diffuse(this, typeof(GearRoot));
         }
 
-        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-        //! ôøÑ¢ûù
+        /// <summary>
+        /// ôøÑ¢ûù
+        /// </summary>
         protected override void StartGearProcess()
         {
             base.StartGearProcess();
             HrsLog.Debug("Root Gear Start");
         }
 
-        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-        //! ú°ð¶
+        /// <summary>
+        /// ú°ð¶
+        /// </summary>
         protected override void EndGearProcess()
         {
             base.EndGearProcess();
@@ -60,18 +83,30 @@ namespace Hrs.Example
         }
     }
 
+    /// <summary>
+    /// í­ÍêA
+    /// </summary>
     public class ChildA : GearHolder
     {
+        /// <summary>
+        /// «³«ó«¹«È«é«¯«¿¡ª
+        /// </summary>
         public ChildA() : base(false)
         {
         }
 
+        /// <summary>
+        /// ?ß¤
+        /// </summary>
         protected override void DiffuseGearProcess()
         {
             base.DiffuseGearProcess();
             _gear.Diffuse(this, typeof(ChildA));
         }
 
+        /// <summary>
+        /// ôøÑ¢ûù
+        /// </summary>
         protected override void StartGearProcess()
         {
             base.StartGearProcess();
@@ -95,22 +130,35 @@ namespace Hrs.Example
         }
     }
 
+    /// <summary>
+    /// í­ÍêB
+    /// </summary>
     public class ChildB : GearHolder
     {
+        /// <summary> í­ÍêC </summary>
         private ChildC childC = null;
 
+        /// <summary>
+        /// «³«ó«¹«È«é«¯«¿¡ª
+        /// </summary>
         public ChildB() : base(false)
         {
             childC = new ChildC();
             _gear.AddChildGear(childC.GetGear());
         }
 
+        /// <summary>
+        /// ?ß¤
+        /// </summary>
         protected override void DiffuseGearProcess()
         {
             base.DiffuseGearProcess();
             _gear.Diffuse(this, typeof(ChildB));
         }
 
+        /// <summary>
+        /// ôøÑ¢ûù
+        /// </summary>
         protected override void StartGearProcess()
         {
             base.StartGearProcess();
@@ -134,13 +182,22 @@ namespace Hrs.Example
         }
     }
 
+    /// <summary>
+    /// í­ÍêC
+    /// </summary>
     public class ChildC : GearHolder
     {
+        /// <summary>
+        /// «³«ó«¹«È«é«¯«¿¡ª
+        /// </summary>
         public ChildC() : base(false)
         {
 
         }
 
+        /// <summary>
+        /// ôøÑ¢ûù
+        /// </summary>
         protected override void StartGearProcess()
         {
             base.StartGearProcess();

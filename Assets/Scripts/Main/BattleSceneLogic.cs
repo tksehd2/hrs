@@ -3,6 +3,9 @@ using Hrs.Util;
 
 namespace Hrs.Main
 {
+	/// <summary>
+	/// バトルロジック
+	/// </summary>
 	public class BattleSceneLogic : BaseSceneLogic<IBattleSceneViewOrder>
 	{
 		/// <summary>
@@ -35,6 +38,7 @@ namespace Hrs.Main
 
 		/// <summary>
 		/// ボタンのコマンド処理（Tap）
+		/// <param name="commandId"> コマンドId </param>
 		/// </summary>
 		protected override void TapButtonCommandProcess(string commandId)
 		{

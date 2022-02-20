@@ -3,6 +3,9 @@ using Hrs.Util;
 
 namespace Hrs.Main
 {
+	/// <summary> 
+	/// Hrsの設定情報
+	/// </summary>
 	public class HrsSetting : ISetting
 	{
 		/// <summary> 開始シーン </summary>

@@ -14,14 +14,20 @@ namespace Hrs.Gear.Handler
 		/// </summary>
 		public enum eMethodType
 		{
+			/// <summary> 最新 </summary>
 			LastOnly,
+			/// <summary> 後ろに追加 </summary>
 			AddTail,
+			/// <summary> 先頭に追加 </summary>
 			AddHead,
+			/// <summary> エラー </summary>
 			AddError,
 		};
 
 		/// <summary>
 		/// 追加メソッド（メソッドタイプを指定する）
+		/// <param name="methodType"> メソッドタイプ </param>
+		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
 		public static void Execute<T>(eMethodType methodType, List<T> list, T newProcess)
 		{
@@ -46,6 +52,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// １つだけ
+		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
 		private static void LastOnly<T>(List<T> list, T newProcess)
 		{
@@ -56,6 +63,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 末尾追加
+		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
 		private static void AddTail<T>(List<T> list, T newProcess)
 		{
@@ -64,6 +72,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 先頭追加
+		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
 		private static void AddHead<T>(List<T> list, T newProcess)
 		{
@@ -72,6 +81,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 空なら追加？？？
+		/// <param name="newProcess"> 行う処理 </param>
 		/// </summary>
 		private static void AddError<T>(List<T> list, T newProcess)
 		{

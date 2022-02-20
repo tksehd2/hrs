@@ -3,12 +3,15 @@ using Hrs.Util;
 
 namespace Hrs.Core
 {
+	/// <summary> 
+	/// GameViewのInterface（書き込み専用）
+	/// </summary>
 	public interface IGameViewOrder
 	{
 		/// <summary> SceneView設定</summary>
-		IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic);
-		/// <summary> SceneView設定</summary>
-		IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic);
+		IBaseSceneViewOrder SetupSceneView(IBaseSceneLogicForTypeCheck sceneLogic);
+		/// <summary> SceneView設定（最初の開始時）</summary>
+		IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogicForTypeCheck sceneLogic);
 	}
 
 	/// <summary> 
@@ -17,8 +20,10 @@ namespace Hrs.Core
 	/// </summary>
 	abstract public class GameView : GearHolderBehavior, IGameViewOrder
 	{
+		/// <summary> 現在のシーンビュー </summary>
 		private BaseSceneView _currentSceneView = null;
-		private ILogicStateChnager_ForView _logicStateChanger = null;
+		/// <summary> ロジック変更機 </summary>
+		private ILogicStateChanger_ForView _logicStateChanger = null;
 
 		/// <summary> 
 		/// 初期化関数
@@ -43,6 +48,7 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// 描画処理
+		/// <param name="deltaFrame"> フレーム差分 </param>
 		/// </summary>
 		public void Render(int deltaFrame)
 		{
@@ -59,13 +65,15 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// SceneView作成
+		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
-		abstract protected BaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic);
+		abstract protected BaseSceneView CreateSceneView(IBaseSceneLogicForTypeCheck sceneLogic);
 
 		/// <summary> 
 		/// SceneView設定
+		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
-		public IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic)
+		public IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogicForTypeCheck sceneLogic)
 		{
 			// SceneView生成
 			_currentSceneView = CreateSceneView(sceneLogic);
@@ -78,8 +86,9 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// SceneView設定
+		/// <param name="sceneLogic"> シーンロジック </param>
 		/// </summary>
-		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic)
+		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogicForTypeCheck sceneLogic)
 		{
 			// シーンを親から外す
 			_currentSceneView.AllDisposeGear();

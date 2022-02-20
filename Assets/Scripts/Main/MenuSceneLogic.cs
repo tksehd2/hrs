@@ -3,16 +3,22 @@ using Hrs.Util;
 
 namespace Hrs.Main
 {
+	/// <summary>
+	/// メニューシーンロジック
+	/// </summary>
 	public class MenuSceneLogic : BaseSceneLogic<IMenuSceneViewOrder>
 	{
-
+		/// <summary>
+		/// 更新
+		/// </summary>
 		public override void Update()
 		{
 			base.Update();
 		}
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 初期化
+		/// <summary>
+		/// 初期化
+		/// </summary>
 		protected override void StartGearProcess()
 		{
 			base.StartGearProcess();
@@ -20,8 +26,9 @@ namespace Hrs.Main
 			HrsLog.Debug("MenuSceneLogic Start");
 		}
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 解除
+		/// <summary>
+		/// 解除
+		/// </summary>
 		protected override void EndGearProcess()
 		{
 			base.EndGearProcess();
@@ -29,8 +36,10 @@ namespace Hrs.Main
 			HrsLog.Debug("MenuSceneLogic End");
 		}
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! ボタンのコマンド処理（Tap）
+		/// <summary>
+		/// ボタンのコマンド処理（Tap）
+		/// <param name="commandId"> コマンドId </param>
+		/// </summary>
 		protected override void TapButtonCommandProcess(string commandId)
 		{
 			base.TapButtonCommandProcess(commandId);

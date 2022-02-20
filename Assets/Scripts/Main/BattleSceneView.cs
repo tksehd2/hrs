@@ -3,9 +3,16 @@ using Hrs.Util;
 
 namespace Hrs.Main
 {
+	/// <summary>
+	/// BattleSceneViewのInterface（書き込み専用）
+	/// </summary>
 	public interface IBattleSceneViewOrder : IBaseSceneViewOrder
 	{
 	}
+
+	/// <summary>
+	/// バトルシーンビュークラス
+	/// </summary>
 	public class BattleSceneView : BaseSceneView, IBattleSceneViewOrder
 	{
 		/// <summary>
@@ -30,6 +37,7 @@ namespace Hrs.Main
 
 		/// <summary>
 		/// 描画処理
+		/// <param name="deltaFrame"> 差分フレーム </param>
 		/// </summary>
 		public override void Render(int deltaFrame)
 		{

@@ -3,11 +3,16 @@ using Hrs.Util;
 
 namespace Hrs.Main
 {
-	// TODO: 名称検討(Writer/reader)
+	/// <summary>
+	/// MenuSceneViewのInterface（書き込み専用）
+	/// </summary>
 	public interface IMenuSceneViewOrder : IBaseSceneViewOrder 
 	{
 	}
 
+	/// <summary>
+	/// メニューシーンビュー
+	/// </summary>
 	public class MenuSceneView : BaseSceneView, IMenuSceneViewOrder
 	{
 		/// <summary>
@@ -32,6 +37,7 @@ namespace Hrs.Main
 
 		/// <summary>
 		/// 描画処理
+		/// <param name="deltaFrame"> 差分フレーム </param>
 		/// </summary>
 		public override void Render(int deltaFrame)
 		{

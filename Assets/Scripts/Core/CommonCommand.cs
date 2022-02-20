@@ -12,7 +12,9 @@
 	/// </summary>
 	public enum EButtonTouchKind
 	{
+		/// <summary> タップ（軽くタッチ） </summary>
 		Tap,
+		/// <summary> 長押し </summary>
 		LongHold
 	}
 
@@ -31,13 +33,13 @@
 		/// <summary> ボタンのタッチ種類 </summary>
 		public EButtonTouchKind TouchKind => _touchKind;
 
-		/// <summary> コンストラクタ </summary>
+		/// <summary> コンストラクタ 
+		/// <param name="touchKind"> ボタンのタッチ種類 </param>
+		/// </summary>
 		public ButtonCommand(string id, EButtonTouchKind touchKind)
 		{
 			_id = id;
 			_touchKind = touchKind;
 		}
 	}
-
-
 }

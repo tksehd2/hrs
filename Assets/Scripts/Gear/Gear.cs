@@ -5,11 +5,18 @@ using System.Collections.Generic;
 
 namespace Hrs.Gear
 {
+	/// <summary> 
+	/// ギアのフェーズ
+	/// </summary>
 	public enum eGearPhase 
 	{
+		/// <summary> 作成 </summary>
 		Create,
+		/// <summary> 準備 </summary>
 		Preparation,
+		/// <summary> 実行 </summary>
 		Run,
+		/// <summary> 解除 </summary>
 		Dispose,
 	};
 
@@ -20,22 +27,26 @@ namespace Hrs.Gear
 	public class Gear : IDisposable 
 	{
 
-		/// このGearインスタンスを保持しているクラス（要IGearHolder）
+		/// <summary> このGearインスタンスを保持しているクラス（要IGearHolder） </summary>
 		private IGearHolder _holder;
-		/// 子Gearリスト
+		/// <summary> 子Gearリスト </summary>
 		private List<Gear> _childGearList;
-		/// このギアを保持するインスタンス用のdiffuser
+		/// <summary> このギアを保持するインスタンス用のdiffuser </summary>
 		public Diffuser _diffuser;
 
-		/// handler
+		/// <summary> handler </summary>
 		private eGearPhase _phase;
 
+		/// <summary> 準備処理 </summary>
 		private GearDispatcher _preparationDispatcher;
+		/// <summary> 開始処理 </summary>
 		private GearDispatcher _startDispatcher;
+		/// <summary> 修了処理 </summary>
 		private GearDispatcher _endDispatcher;
 
 		/// <summary>
 		/// コンストラクタ
+		/// <param name="holder"> このGearインスタンスを保持しているクラス </param>
 		/// </summary>
 		public Gear(IGearHolder holder) 
 		{
@@ -54,6 +65,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 自身の子Gearを設定しつつ、子Diffuserの親に自身のDiffuserを設定させる
+		/// <param name="gear"> 追加するギア </param>
 		/// </summary>
 		public void AddChildGear(Gear gear) 
 		{
@@ -63,6 +75,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		// 子のDiffuserの親を空に設定したうえで、子Gearをリストからを削除
+		/// <param name="gear"> 削除するギア </param>
 		/// </summary>
 		public void RemoveChildGear(Gear gear) 
 		{
@@ -72,6 +85,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// diffuse。Diffuserにインスタンスを登録
+		/// <param name="diffuseInstance"> DiffuserのInstance </param>
+		/// <param name="clazz"> クラスタイプ </param>
 		/// </summary>
 		public void Diffuse(object diffuseInstance, Type clazz) 
 		{
@@ -80,6 +95,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// absorb。Diffuserから該当クラスのインスタンスを取得
+		/// <param name="pos"> 位置 </param>
 		/// </summary>
 		public T Absorb<T>(PosInfos pos) 
 		{
@@ -106,6 +122,9 @@ namespace Hrs.Gear
 		}
 
 		// ==== 以下、フェーズチェック ====
+		/// <summary>
+		/// チェック（作成フェーズ）
+		/// </summary>
 		public bool CheckPhaseCreate() 
 		{
 			switch (_phase) 
@@ -120,6 +139,9 @@ namespace Hrs.Gear
 			throw new Exception("存在しないGearPhaseにいます");
 		}
 
+		/// <summary>
+		/// チェック（準備フェーズ）
+		/// </summary>
 		public bool CheckPhaseCanPreparationTool() 
 		{
 			switch (_phase) 
@@ -134,6 +156,9 @@ namespace Hrs.Gear
 			throw new Exception("存在しないGearPhaseにいます");
 		}
 
+		/// <summary>
+		/// チェック（Absorbができるか？）
+		/// </summary>
 		public bool CheckPhaseCanAbsorb() 
 		{
 			switch (_phase) 
@@ -148,6 +173,9 @@ namespace Hrs.Gear
 			throw new Exception("存在しないGearPhaseにいます");
 		}
 
+		/// <summary>
+		/// チェック（実行フェーズ）
+		/// </summary>
 		public bool CheckPhaseRun() 
 		{
 			switch (_phase) 
@@ -162,6 +190,9 @@ namespace Hrs.Gear
 			throw new Exception("存在しないGearPhaseにいます");
 		}
 
+		/// <summary>
+		/// チェック（すでに削除処理が走っているか？）
+		/// </summary>
 		public bool CheckPhaseBeforeDispose() 
 		{
 			switch (_phase) 
@@ -177,16 +208,31 @@ namespace Hrs.Gear
 		}
 
 		// ==== 以下、handlerへの追加処理 ====
+		/// <summary>
+		/// 準備処理追加
+		/// <param name="func"> 処理 </param>
+		/// <param name="pos"> 位置 </param>
+		/// </summary>
 		public void AddPreparationProcess(Action func, PosInfos pos) 
 		{
 			_preparationDispatcher.Add(func, pos);
 		}
 
+		/// <summary>
+		/// 開始処理追加
+		/// <param name="func"> 処理 </param>
+		/// <param name="pos"> 位置 </param>
+		/// </summary>
 		public void AddStartProcess(Action func, PosInfos pos) 
 		{
 			_startDispatcher.Add(func, pos);
 		}
 
+		/// <summary>
+		/// 修了処理追加
+		/// <param name="func"> 処理 </param>
+		/// <param name="pos"> 位置 </param>
+		/// </summary>
 		public CancelKey AddEndProcess(Action func, PosInfos pos) 
 		{
 			if (!CheckPhaseBeforeDispose()) 
@@ -196,6 +242,9 @@ namespace Hrs.Gear
 			return _endDispatcher.Add(func, pos);
 		}
 
+		/// <summary>
+		/// 初期化
+		/// </summary>
 		public void Initialize() 
 		{
 			if (!CheckPhaseCreate()) return;
@@ -216,17 +265,27 @@ namespace Hrs.Gear
 		}
 
 		// ==== 以下、IDispose ====
+		/// <summary>
+		/// 解除
+		/// </summary>
 		~Gear() 
 		{
 			this.Dispose(false);
 		}
 
+		/// <summary>
+		///
+		/// </summary>
 		public void Dispose() 
 		{
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
+		/// <summary>
+		/// 解除
+		/// <param name="isDisposing"> 解除中か </param>
+		/// </summary>
 		private void Dispose(bool isDisposing) 
 		{
 			if (_phase != eGearPhase.Dispose) 
@@ -252,7 +311,9 @@ namespace Hrs.Gear
 			}
 		}
 
-		// for debug
+		/// <summary>
+		// 出力（Debug）
+		/// </summary>
 		public void DebugPrint(string str) 
 		{
 			UnityEngine.Debug.Log("[" + str + "]:" + this._holder + "(" + _phase + ")");

@@ -10,20 +10,29 @@ namespace Hrs.Gear.Handler
 	/// </summary>
 	public class GenericGearDispatcher<TFunc>
 	{
+		/// <summary> Handlerを実行するDispatcherリスト </summary>
 		private List<GearDispatcherHandler<TFunc>> _list;
 
-		private readonly AddBehavior.eMethodType _addBehavior;
+		/// <summary> メソッドタイプ </summary>
+		private readonly AddBehavior.eMethodType _methodType;
+		/// <summary> 実行ロック </summary>
 		private bool _executeLock;
+		/// <summary> １回だけ実行するかどうか </summary>
 		private readonly bool _once;
+		/// <summary> Dispatcherの位置 </summary>
 		private readonly PosInfos _dispatcherPos;
-		public  PosInfos DispatcherPos { get { return _dispatcherPos; } }
+		/// <summary> Dispatcherの位置 </summary>
+		public PosInfos DispatcherPos { get { return _dispatcherPos; } }
 
 		/// <summary>
 		/// 初期化
+		/// <param name="methodType"> メソッドタイプ </param>
+		/// <param name="once"> １回だけ行うかどうか </param>
+		/// <param name="dispatcherPos"> Dispatcherの位置 </param>
 		/// </summary>
-		public GenericGearDispatcher(AddBehavior.eMethodType addBehavior, bool once, PosInfos dispatcherPos)
+		public GenericGearDispatcher(AddBehavior.eMethodType methodType, bool once, PosInfos dispatcherPos)
 		{
-			_addBehavior = addBehavior;
+			_methodType = methodType;
 			_once = once;
 			_dispatcherPos = dispatcherPos;
 			
@@ -41,16 +50,19 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// Handler追加（削除用のCancelKeyが返る）
+		/// <param name="func"> 実行する処理 </param>
+		/// <param name="addPos"> 追加された時の位置 </param>
 		/// </summary>
 		public CancelKey Add(TFunc func, PosInfos addPos)
 		{
 			GearDispatcherHandler<TFunc> handler = new GearDispatcherHandler<TFunc>(func, addPos);
-			AddBehavior.Execute(_addBehavior, _list, handler);
+			AddBehavior.Execute(_methodType, _list, handler);
 			return handler;
 		}
 
 		/// <summary>
 		/// Handler削除（追加時に得たCancelKeyを使う）
+		/// <param name="key"> キャンセルキー </param>
 		/// </summary>
 		public void Remove(CancelKey key)
 		{
@@ -80,6 +92,8 @@ namespace Hrs.Gear.Handler
 		/// <summary>
 		/// 実行
 		/// 同時実行されたときにおかしくならないようにいったんローカルに対比してから実行している
+		/// <param name="treat"> 処理するAction </param>
+		/// <param name="executePos"> 実行した時の位置 </param>
 		/// </summary>
 		public void Execute(Action<GearDispatcherHandler<TFunc>> treat, PosInfos executePos)
 		{

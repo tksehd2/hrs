@@ -3,6 +3,9 @@ using System;
 
 namespace Hrs.Util
 {
+	/// <summary>
+	/// ログレベル定義
+	/// </summary>
 	public static class HrsLogLevelDefine
 	{
 		public const uint Debug = 1;     // 0001
@@ -12,14 +15,25 @@ namespace Hrs.Util
 		public const uint All = Debug | Info | Warning | Error;
 	}
 
+	/// <summary>
+	/// ログクラス
+	/// </summary>
 	public static class HrsLog
 	{
+		/// <summary> 先頭文字（プリピックス） </summary>
 		const string PREFIX_ARK_LOG = "HRS";
 
-		static Dictionary<uint, string> _prefixDict = null;
+		/// <summary> 先頭文字Dic </summary>
+		static Dictionary<uint, string> _prefixDic = null;
 
+		/// <summary> ログ出力レベル </summary>
 		static uint _displayLogLevel = 0;
 
+		/// <summary>
+		/// プリピックス取得
+		/// <param name="colorName"> 色名 </param>
+		/// <param name="level"> ログレベル </param>
+		/// </summary>
 		static string GetLogPrefix(string colorName, string level)
 		{
 			return String.Format("<b> <color='{0}'>[{1}][{2}] </color> </b>",
@@ -28,13 +42,13 @@ namespace Hrs.Util
 				level);
 		}
 
-		static HrsLog()
-		{
-		}
-
+		/// <summary>
+		/// 初期化
+		/// <param name="displayLogLevel"> 出力するログレベル </param>
+		/// </summary>
 		public static void Init(uint displayLogLevel)
 		{
-			_prefixDict = new Dictionary<uint, string>()
+			_prefixDic = new Dictionary<uint, string>()
 			{
 				{HrsLogLevelDefine.Error, GetLogPrefix ("red", "Error")},
 				{HrsLogLevelDefine.Warning,  GetLogPrefix ("yellow", "Warning")},
@@ -45,31 +59,55 @@ namespace Hrs.Util
 			_displayLogLevel = displayLogLevel;
 		}
 
+		/// <summary>
+		/// 解放
+		/// </summary>
 		public static void Release()
 		{
-			_prefixDict = null;
+			_prefixDic = null;
 		}
 
+		/// <summary>
+		/// 情報ログを出す
+		/// <param name="message"> メッセージ </param>
+		/// </summary>
 		public static void Info(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Info);
 		}
 
+		/// <summary>
+		/// デバッグログを出す
+		/// <param name="message"> メッセージ </param>
+		/// </summary>
 		public static void Debug(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Debug);
 		}
 
+		/// <summary>
+		/// 警告ログを出す
+		/// <param name="message"> メッセージ </param>
+		/// </summary>
 		public static void Warning(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Warning);
 		}
 
+		/// <summary>
+		/// エラーログを出す
+		/// <param name="message"> メッセージ </param>
+		/// </summary>
 		public static void Error(string message)
 		{
 			ShowMessage(message, HrsLogLevelDefine.Error);
 		}
 
+		/// <summary>
+		/// メッセージを出す
+		/// <param name="message"> メッセージ </param>
+		/// <param name="level"> 出力するログレベル </param>
+		/// </summary>
 		private static void ShowMessage(string message, uint level)
 		{
 			if (!CanShowLogLevel(level))
@@ -78,9 +116,13 @@ namespace Hrs.Util
 			}
 
 			PosInfos posInfoCallLog = new PosInfos(3);
-			UnityEngine.Debug.Log(_prefixDict[level] + message + "\n " + posInfoCallLog.ToString() + " \n\n");
+			UnityEngine.Debug.Log(_prefixDic[level] + message + "\n " + posInfoCallLog.ToString() + " \n\n");
 		}
-		
+
+		/// <summary>
+		/// 出力可能なレベルかチェック
+		/// <param name="level"> 出力するログレベル </param>
+		/// </summary>
 		private static bool CanShowLogLevel(uint level)
 		{
 			return (_displayLogLevel & level) == level;

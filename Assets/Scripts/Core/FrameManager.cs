@@ -3,6 +3,10 @@ using Hrs.Gear;
 
 namespace Hrs.Core
 {
+	/// <summary> 
+	/// フレームマネージャー
+	/// 前回のゲームループとの差分を計算する
+	/// </summary>
 	public class FrameManager : GearHolder
 	{
 		/// <summary> 時間倍率 </summary>
@@ -18,6 +22,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// コンストラクタ
+		/// <param name="fps"> FPS </param>
 		/// </summary>
 		public FrameManager(int fps) : base(false)
 		{

@@ -9,13 +9,16 @@ namespace Hrs.Gear
 	/// </summary>
 	public class GearHolder : IGearHolder 
 	{
+		/// <summary> ルートかどうか </summary>
 		protected readonly bool _isRoot;
+		/// <summary> ギア </summary>
 		protected Gear _gear = null;
 
 		/// <summary>
 		/// コンストラクタ
 		/// Gearを必ず保持する
 		/// 大親の時はisrootをtrueにすること
+		/// <param name="isRoot"> ルートかどうか </param>
 		/// </summary>
 		public GearHolder(bool isRoot) 
 		{
@@ -36,13 +39,17 @@ namespace Hrs.Gear
 			_gear.AddEndProcess(EndGearProcess, new PosInfos());
 		}
 
+		/// <summary>
 		/// Gearの外部出し用（子が親のGearを見るために必要）
+		/// </summary>
 		public Gear GetGear()
 		{
 			return _gear;
 		}
 
+		/// <summary>
 		/// インスタンスが一通り揃い、Gearの親子関係ができた後の最初の処理
+		/// </summary>
 		public virtual void InitGear() 
 		{
 			_gear.Initialize();

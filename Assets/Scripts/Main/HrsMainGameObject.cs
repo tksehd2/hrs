@@ -2,9 +2,15 @@
 
 namespace Hrs.Main
 {
-	public class HrsMainGameObject : MainGameObject
+	/// <summary>
+	/// メインオブジェクト
+	/// エントリーポイント
+	/// </summary>
+	public class HrsMainGameObject : EntryGameObject
 	{
-		// Use this for initialization
+		/// <summary>
+		/// 開始
+		/// </summary>
 		protected override void Start()
 		{
 			Initialize(new HrsSetting());

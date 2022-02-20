@@ -4,7 +4,18 @@ using System;
 
 namespace Hrs.Core
 {
-	public interface IBaseSceneLogic : IGearHolder
+	/// <summary> 
+	/// 基底シーンロジックInterface（型判定用のため中は空でいい）
+	/// </summary>
+	public interface IBaseSceneLogicForTypeCheck : IGearHolder
+    {
+
+    }
+
+	/// <summary> 
+	/// 基底シーンロジックInterface
+	/// </summary>
+	public interface IBaseSceneLogic : IBaseSceneLogicForTypeCheck
 	{
 		/// <summary>シーンに入る時の処理</summary>
 		void Enter();
@@ -18,6 +29,9 @@ namespace Hrs.Core
 		void CommandProcess(ICommand command);
 	}
 
+	/// <summary> 
+	/// 基底シーンロジッククラス
+	/// </summary>
 	public class BaseSceneLogic<TView> : GearHolder, IBaseSceneLogic where TView : class, IBaseSceneViewOrder
 	{
 		/// <summary> ゲームロジック </summary>
@@ -77,6 +91,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ViewOrderを設定する
+		/// <param name="sceneView"> シーンビュー </param>
 		/// </summary>
 		public void SetSceneViewOrder(IBaseSceneViewOrder sceneView)
 		{
@@ -85,6 +100,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// コマンド処理
+		/// <param name="command"> コマンド </param>
 		/// </summary>
 		public void CommandProcess(ICommand command)
 		{
@@ -102,6 +118,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ボタンのコマンド処理
+		/// <param name="buttonCommand"> ボタンのコマンド </param>
 		/// </summary>
 		protected void ButtonCommandProcess(ButtonCommand buttonCommand)
 		{
@@ -114,6 +131,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ボタンのコマンド処理（Tap）
+		/// <param name="commandId"> コマンドId </param>
 		/// </summary>
 		protected virtual void TapButtonCommandProcess(string commandId)
 		{
@@ -122,6 +140,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// ボタンのコマンド処理（LongHold）
+		/// <param name="commandId"> コマンドId </param>
 		/// </summary>
 		protected virtual void LongHoldButtonCommandProcess(string commandId)
 		{

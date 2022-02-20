@@ -3,18 +3,27 @@ using Hrs.Core;
 
 namespace Hrs.Main
 {
+	/// <summary>
+	/// ゲームビュー
+	/// </summary>
 	public class HrsGameView : GameView
 	{
+		/// <summary> メニューシーン </summary>
 		[SerializeField]
 		private MenuSceneView _menuSceneView = null;
+
+		/// <summary> バトルシーン </summary>
 		[SerializeField]
 		private BattleSceneView _battleSceneView = null;
 
-		protected override BaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic)
+		/// <summary> 
+		/// シーンビュー作成
+		/// <param name="sceneLogic"> シーンロジック </param>
+		/// </summary>
+		protected override BaseSceneView CreateSceneView(IBaseSceneLogicForTypeCheck sceneLogic)
 		{
 			if (sceneLogic.GetType() == typeof(MenuSceneLogic))
 			{
-				//return Instantiate<MenuSceneView>()
 				return Instantiate(_menuSceneView, transform);
 			}
 			else if(sceneLogic.GetType() == typeof(BattleSceneLogic))

@@ -1,6 +1,9 @@
 ﻿
 namespace Hrs.Core
 {
+	/// <summary> 
+	/// ゲーム設定のInterface
+	/// </summary>
 	public interface ISetting
 	{
 		/// <summary> 開始シーン </summary>

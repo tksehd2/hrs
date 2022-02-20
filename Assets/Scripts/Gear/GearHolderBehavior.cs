@@ -17,11 +17,14 @@ namespace Hrs.Gear
 	/// </summary>
 	public class GearHolderBehavior : MonoBehaviour, IGearHolder
 	{
+		/// <summary> ルートかどうか </summary>
 		protected bool _isRoot = false;
+		/// <summary> ギア </summary>
 		protected Gear _gear = null;
 
 		/// <summary>
 		/// コンストラクタは使えないので、使うときは手動でこの関数をた叩いて下さい。
+		/// <param name="isRoot"> ルートかどうか </param>
 		/// </summary>
 		public void InitDI(bool isRoot)
 		{

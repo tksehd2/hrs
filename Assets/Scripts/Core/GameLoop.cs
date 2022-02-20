@@ -4,17 +4,34 @@ using Hrs.Util;
 
 namespace Hrs.Core
 {
+	/// <summary> 
+	/// ゲームループ
+	/// ゲーム全体の流れをここで決める
+	/// </summary>
 	public class GameLoop : GearHolder
 	{
+		/// <summary> フレームマネージャー </summary>
 		private FrameManager _frameManager = null;
+		/// <summary> ゲームロジック </summary>
 		private GameLogic _gameLogic = null;
+		/// <summary> ゲームビュー </summary>
 		private GameView _gameView = null;
+		/// <summary> ロジック状態変更機 </summary>
 		private LogicStateChanger _logicStateChanger = null;
 
-		private float _debugLastUpdateSeconds = 0;
+		//-=-=-=-=-=-=-=   Debug用   -=-=-=-=-=-=-=-
+		/// <summary> 前回のアップデートが回った時の時間（単位：病） </summary>
+		private float _debugPrevUpdateSeconds = 0;
+		/// <summary> 差分フレーム </summary>
 		private float _debugDeltaFrame = 0;
+		/// <summary> デバッグカウント </summary>
 		private int _debugCount = 0;
 
+		/// <summary> 
+		/// コンストラクター
+		/// <param name="setting"> 設定情報 </param>
+		/// <param name="gameView"> ゲームビュー </param>
+		/// </summary>
 		public GameLoop(ISetting setting, GameView gameView) : base(true)
 		{
 			_frameManager = new FrameManager(setting.Fps);
@@ -73,14 +90,14 @@ namespace Hrs.Core
 			
 			//////////////////// debug ////////////////
 			_debugCount += deltaFrame;
-			_debugDeltaFrame += (Time.time - _debugLastUpdateSeconds);
+			_debugDeltaFrame += (Time.time - _debugPrevUpdateSeconds);
 			if(_debugDeltaFrame >= 1.0f)
 			{
 				//HrsLog.Debug("count : "+ _debugCount);
 				_debugDeltaFrame = 0.0f;
 				_debugCount = 0;
 			}
-			_debugLastUpdateSeconds = Time.time;
+			_debugPrevUpdateSeconds = Time.time;
 			//////////////////// debug ////////////////
 
 			for (int i = 0; i < deltaFrame; ++i)

@@ -21,6 +21,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// コンストラクタ
+		/// <param name="holder"> このDiffuserを持っているやつ </param>
 		/// </summary>
 		public Diffuser(object holder)
 		{
@@ -31,6 +32,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 親のdiffuserの登録
+		/// <param name="parent"> 親 </param>
 		/// </summary>
 		public void SetParent(Diffuser parent)
 		{
@@ -39,6 +41,8 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// absorb用にインスタンスを登録する
+		/// <param name="diffuseInstance"> DiffuserのInstance </param>
+		/// <param name="clazz"> クラスタイプ </param>
 		/// </summary>
 		public void Add(object diffuseInstance, Type clazz)
 		{
@@ -52,6 +56,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 登録されたインスタンスを削除（ほぼ使わない）
+		/// <param name="clazz"> クラスタイプ </param>
 		/// </summary>
 		public void Remove(Type clazz)
 		{
@@ -61,6 +66,7 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// クラス名で指定したインスタンスを取得（初期ステップ）
+		/// <param name="pos"> 位置 </param>
 		/// </summary>
 		public T Get<T>(PosInfos pos)
 		{
@@ -71,6 +77,9 @@ namespace Hrs.Gear
 
 		/// <summary>
 		/// 登録されたインスタンスを削除（ほぼ使わない）
+		/// <param name="className"> クラス名 </param>
+		/// <param name="startDiffuser"> 検索を開始するDiffuser </param>
+		/// <param name="pos"> 位置 </param>
 		/// </summary>
 		private T GetWithClassName<T>(string className, Diffuser startDiffuser, PosInfos pos)
 		{
@@ -110,17 +119,27 @@ namespace Hrs.Gear
 		}
 
 		// IDisposable method
+		/// <summary>
+		/// 解除
+		/// </summary>
 		~Diffuser()
 		{
 			Dispose(false);
 		}
 
+		/// <summary>
+		/// 解除
+		/// </summary>
 		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
+		/// <summary>
+		/// 解除
+		/// <param name="isDisposing"> 解除中かどうか </param>
+		/// </summary>
 		private void Dispose(bool isDisposing)
 		{
 			if (!_disposed)

@@ -3,16 +3,27 @@ using Hrs.Util;
 
 namespace Hrs.Core
 {
+	/// <summary>
+	/// ゲームロジックInterface（LogicStateChanger用）
+	/// </summary>
 	public interface IGameLogic_ForLogicStateChanger
 	{
+		/// <summary>コマンド通知</summary>
 		void NotifyCommand(ICommand command);
 	}
 
+	/// <summary>
+	/// ゲームロジックInterface（SceneLogic用）
+	/// </summary>
 	public interface IGameLogic_ForSceneLogic
 	{
+		/// <summary>シーン切り替え</summary>
 		void ChangeScene(IBaseSceneLogic nextScene);
 	}
 
+	/// <summary>
+	/// ゲームロジッククラス
+	/// </summary>
 	public class GameLogic : GearHolder, IGameLogic_ForLogicStateChanger, IGameLogic_ForSceneLogic
 	{
 		/// <summary> GameView </summary>
@@ -24,6 +35,7 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// コンストラクタ
+		/// <param name="setting"> 設定情報 </param>
 		/// </summary>
 		public GameLogic(ISetting setting) : base(false)
 		{
@@ -64,6 +76,7 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// シーン変更
+		/// <param name="nextScene"> 次のシーン </param>
 		/// </summary>
 		public void ChangeScene(IBaseSceneLogic nextScene)
 		{
@@ -93,6 +106,7 @@ namespace Hrs.Core
 
 		/// <summary> 
 		/// コマンド通達
+		/// <param name="command"> コマンド </param>
 		/// </summary>
 		public void NotifyCommand(ICommand command)
 		{

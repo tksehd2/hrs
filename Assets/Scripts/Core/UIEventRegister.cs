@@ -6,55 +6,78 @@ using UnityEngine.UI;
 
 namespace Hrs.Core
 {
+	/// <summary> 
+	/// Uiのイベント登録クラス
+	/// </summary>
 	public class UIEventRegister : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 	{
+		// Todo:このあたり今後UniRx対応する。
 		#region 通常ボタン
+		/// <summary> 連打防止 </summary>
 		private const float BUTTON_LOCK_SEC = 0.333f;
+		/// <summary> 押したときの大きさ </summary>
 		private const float BUTTON_PRESSED_SCALE = 1.1f;
-		private const float SCALING_CLOSE_RATE = 0.8f; // 1回のUpdateでどれくらい目的のScaleに近づくか
+		/// <summary> 1回のUpdateでどれくらい目的のScaleに近づくか </summary>
+		private const float SCALING_CLOSE_RATE = 0.8f;
 
-		// 通常ボタンの同時押しは回避しておく
+		/// <summary> 通常ボタンの同時押しは回避しておく </summary>
 		private static bool underLock = false;
 
-		private Button button;
+		/// <summary> ボタン </summary>
+		private Button button = null;
 
-		private Vector3 startButtonScale;
-		private bool isPushed;
-		private float scaleRation = 1f;
+		/// <summary> 開始時のボタンスケール </summary>
+		private Vector3 startButtonScale = Vector3.one;
+		/// <summary> 押したか </summary>
+		private bool isPushed = false;
+		/// <summary> スケール比率 </summary>
+		private float scaleRate = 1f;
 
+		/// <summary> ボタンId </summary>
 		[SerializeField]
 		private string _buttonId = string.Empty;
 
-		// PointerDown時に一緒に呼んでほしいイベントを入れる
+		/// <summary> PointerDown時に一緒に呼んでほしいイベントを入れる </summary>
 		private Action customPointerDownEvent = null;
-		public Action CustomPointerDownEvent
-		{ set { customPointerDownEvent = value; } }
+		/// <summary> PointerDown時に一緒に呼んでほしいイベントを入れる </summary>
+		public Action CustomPointerDownEvent { set { customPointerDownEvent = value; } }
+
+		/// <summary> 押されてスケール中かどうか </summary>
 		[SerializeField]
 		private bool isEnablePushedScaling = true;
-		public bool IsEnablePushedScaling
-		{ set { isEnablePushedScaling = value; } }
+		/// <summary> 押されてスケール中かどうか </summary>
+		public bool IsEnablePushedScaling { set { isEnablePushedScaling = value; } }
 
-		// 基本的にボタンのScaleは1固定であるが、デバック用にScale調整したいときに、こちらにチェックを入れてScale調整する
+		/// <summary> 基本的にボタンのScaleは1固定であるが、デバック用にScale調整したいときに、こちらにチェックを入れてScale調整する </summary>
 		[SerializeField]
 		private bool isChangeButtonScale = false;
 		#endregion
 
 		#region 長押しボタン関連
+		/// <summary> 長押し </summary>
 		[SerializeField]
 		private bool isLongTapButton = false;           // 長押しボタンか？
+
+		/// <summary> 長押し判定するための時間 </summary>
 		private const float LONG_PRESS_INTERVAL_SEC = 0.7f;
+		/// <summary> 長押し用のAction </summary>
 		public Action onLongPress;
-		private float pressingSecCounter = 0f;          // 
-		private bool isEnabledLongPress = true;         // 長押し可能か
-		private bool isPressing = false;                // 長押し中か？
+		/// <summary> 押した時間数えるためのカウンター </summary>
+		private float pressingSecCounter = 0f;
+		/// <summary> 長押し可能か </summary>
+		private bool isEnabledLongPress = true;
+		/// <summary> 押しているか </summary>
+		private bool isPressing = false;
 		#endregion
 
-		// Use this for initialization
+		/// <summary> 
+		/// 開始
+		/// </summary>
 		void Start()
 		{
 			// GameMainObjectの取得
 			GameObject go = GameObject.FindWithTag("MainGameObject");
-			MainGameObject mainGameObject = go.GetComponent<MainGameObject>();
+			EntryGameObject mainGameObject = go.GetComponent<EntryGameObject>();
 			IBaseSceneView_ForUIEventRegister sceneView =  mainGameObject.GetCurrentSceneView();
 			// Buttonにイベントセット
 			button = this.GetComponent<Button>();
@@ -97,7 +120,9 @@ namespace Hrs.Core
 			}
 		}
 
-		// Update is called once per frame
+		/// <summary> 
+		/// 更新
+		/// </summary>
 		void Update()
 		{
 			if (isLongTapButton)
@@ -110,6 +135,9 @@ namespace Hrs.Core
 			}
 		}
 
+		/// <summary> 
+		/// 更新（通常ボタン）
+		/// </summary>
 		private void UpdateNormalButton()
 		{
 			if (!isEnablePushedScaling)
@@ -119,19 +147,22 @@ namespace Hrs.Core
 
 			if (isPushed)
 			{
-				scaleRation = (scaleRation * (1.0f - SCALING_CLOSE_RATE)) + (BUTTON_PRESSED_SCALE * SCALING_CLOSE_RATE);
+				scaleRate = (scaleRate * (1.0f - SCALING_CLOSE_RATE)) + (BUTTON_PRESSED_SCALE * SCALING_CLOSE_RATE);
 			}
 			else
 			{
-				scaleRation = (scaleRation * (1.0f - SCALING_CLOSE_RATE)) + (1.0f * SCALING_CLOSE_RATE);
+				scaleRate = (scaleRate * (1.0f - SCALING_CLOSE_RATE)) + (1.0f * SCALING_CLOSE_RATE);
 			}
 
 			if (button != null && button.IsInteractable())
 			{
-				button.transform.localScale = startButtonScale * scaleRation;
+				button.transform.localScale = startButtonScale * scaleRate;
 			}
 		}
 
+		/// <summary>  
+		/// 更新（タップボタン）
+		/// </summary>
 		private void UpdateLongTapButton()
 		{
 			if (isPressing && isEnabledLongPress)
@@ -145,7 +176,9 @@ namespace Hrs.Core
 			}
 		}
 
-		// 同一ボタン連打対策
+		/// <summary> 
+		/// ロック
+		/// </summary>
 		private IEnumerator AutoLock(float sec)
 		{
 			// ロック
@@ -160,6 +193,9 @@ namespace Hrs.Core
 			underLock = false;
 		}
 
+		/// <summary> 
+		/// 押した時の処理
+		/// </summary>
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			if (isLongTapButton)
@@ -172,6 +208,9 @@ namespace Hrs.Core
 			}
 		}
 
+		/// <summary> 
+		/// 離した時の処理
+		/// </summary>
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			if (isLongTapButton)
@@ -184,6 +223,9 @@ namespace Hrs.Core
 			}
 		}
 
+		/// <summary> 
+		/// ポインターが領域を離れた時の処理
+		/// </summary>
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			if (!isLongTapButton)
@@ -192,6 +234,9 @@ namespace Hrs.Core
 			}
 		}
 
+		/// <summary> 
+		/// 押したときの処理（通常）
+		/// </summary>
 		private void OnPointerDown_NormalButton()
 		{
 			isPushed = true;
@@ -201,16 +246,25 @@ namespace Hrs.Core
 			}
 		}
 
+		/// <summary> 
+		/// 押したときの処理（長押し）
+		/// </summary>
 		private void OnPointerDown_LongTapButton()
 		{
 			isPressing = true;
 		}
 
+		/// <summary> 
+		/// 離した時の処理（通常）
+		/// </summary>
 		private void OnPointerUp_NormalButton()
 		{
 			isPushed = false;
 		}
 
+		/// <summary> 
+		/// 離した時の処理（長押し）
+		/// </summary>
 		private void OnPointerUp_LongTapButton()
 		{
 			pressingSecCounter = 0;
@@ -218,6 +272,9 @@ namespace Hrs.Core
 			isPressing = false;
 		}
 
+		/// <summary> 
+		/// ポインターが離れた時の処理
+		/// </summary>
 		private void OnPointerExit_NormalButton()
 		{
 			isPushed = false;

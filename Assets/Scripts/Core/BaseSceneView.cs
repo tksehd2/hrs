@@ -1,22 +1,31 @@
 ﻿using Hrs.Gear;
 using Hrs.Util;
-using UnityEngine;
 
 namespace Hrs.Core
 {
+	/// <summary> 
+	/// 基底シーンビューのInterface(読み書き専用)
+	/// </summary>
 	public interface IBaseSceneViewOrder : IGearHolder
 	{
 
 	}
 
+	/// <summary> 
+	/// 基底シーンビューのInterface（UIEventRegister用）
+	/// </summary>
 	public interface IBaseSceneView_ForUIEventRegister
 	{
 		void NotifyCommand(ICommand command);
 	}
 
+	/// <summary> 
+	/// 基底シーンビュークラス
+	/// </summary>
 	public class BaseSceneView : GearHolderBehavior, IBaseSceneViewOrder, IBaseSceneView_ForUIEventRegister
 	{
-		private ILogicStateChnager_ForView _logicStateChanger = null;
+		/// <summary> ロジック状態変更機</summary>
+		private ILogicStateChanger_ForView _logicStateChanger = null;
 
 		/// <summary>
 		/// 初期化関数
@@ -41,6 +50,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// 描画処理
+		/// <param name="deltaFrame"> 経過フレーム </param>
 		/// </summary>
 		public virtual void Render(int deltaFrame)
 		{
@@ -49,6 +59,7 @@ namespace Hrs.Core
 
 		/// <summary>
 		/// コマンド通知
+		/// <param name="command"> コマンド </param>
 		/// </summary>
 		public virtual void NotifyCommand(ICommand command)
 		{

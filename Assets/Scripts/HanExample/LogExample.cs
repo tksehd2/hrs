@@ -5,21 +5,30 @@ using Hrs.Util;
 
 namespace Hrs.Test
 {
+    /// <summary>
+    /// «í«°ÖÇð¹
+    /// </summary>
     public class LogExample : MonoBehaviour
     {
+        /// <summary> DebugOn </summary>
         [SerializeField]
         private bool isDisplayDebug = true;
 
+        /// <summary> InfoOn </summary>
         [SerializeField]
         private bool isDisplayInfo = true;
 
+        /// <summary> WarinigOn </summary>
         [SerializeField]
         private bool isDisplayWarning = true;
 
+        /// <summary> ErrorOn </summary>
         [SerializeField]
         private bool isDisplayError = true;
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// ËÒã·
+        /// </summary>
         void OnEnable()
         {
             uint displayLevel = 0;

@@ -14,6 +14,9 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 初期化
+		/// <param name="addBehavior"> メソッドタイプ </param>
+		/// <param name="once"> １回だけ行うかどうか </param>
+		/// <param name="pos"> 位置確認用クラス </param>
 		/// </summary>
 		public GearDispatcher(AddBehavior.eMethodType addBehavior, bool once, PosInfos pos)
 		{
@@ -22,6 +25,8 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 追加（削除用のCancelKeyが返る）
+		/// <param name="func"> 実行する処理 </param>
+		/// <param name="addPos"> 位置確認用クラス </param>
 		/// </summary>
 		public CancelKey Add(Action func, PosInfos addPos)
 		{
@@ -30,6 +35,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 削除
+		/// <param name="key"> キャンセルキー </param>
 		/// </summary>
 		public void Remove(CancelKey key)
 		{
@@ -38,6 +44,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 実行
+		/// <param name="executePos"> 位置確認用クラス </param>
 		/// </summary>
 		public void Execute(PosInfos executePos)
 		{
@@ -46,6 +53,7 @@ namespace Hrs.Gear.Handler
 
 		/// <summary>
 		/// 実行本体
+		/// <param name="handler"> ハンドラー </param>
 		/// </summary>
 		private void Trat(GearDispatcherHandler<Action> handler)
 		{
