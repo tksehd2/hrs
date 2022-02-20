@@ -2,3 +2,10 @@
 # Ignore Directory
 Library
 Logs
+.idea
+Temp
+obj
+
+# Ignore Files
+*.csproj
+*.sln
