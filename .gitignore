@@ -5,7 +5,7 @@ Logs
 .idea
 Temp
 obj
-Assets/hrs_resources
 
 # Ignore Files
 *.csproj
+*.sln
