@@ -7,4 +7,5 @@ Temp
 obj
 
 # Ignore Files
-
+*.csproj
+*.sln
