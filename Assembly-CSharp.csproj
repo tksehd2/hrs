@@ -56,40 +56,43 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Sss\Core\CommonCommand.cs" />
-    <Compile Include="Assets\Sss\Gear\Handler\GearDispatcherHandler.cs" />
-    <Compile Include="Assets\Sss\Main\MenuSceneCommandDefine.cs" />
-    <Compile Include="Assets\Sss\Core\FrameManager.cs" />
-    <Compile Include="Assets\Sss\Gear\Handler\GenericGearDispatcher.cs" />
-    <Compile Include="Assets\Sss\Main\MenuSceneLogic.cs" />
-    <Compile Include="Assets\Sss\Main\BattleSceneLogic.cs" />
-    <Compile Include="Assets\Sss\Gear\IGearHolder.cs" />
-    <Compile Include="Assets\Sss\Main\HrsMainGameObject.cs" />
-    <Compile Include="Assets\Sss\Gear\Handler\CancelKey.cs" />
-    <Compile Include="Assets\Sss\Core\GameLogic.cs" />
-    <Compile Include="Assets\Sss\Main\BattleSceneCommandDefine.cs" />
-    <Compile Include="Assets\Sss\Gear\Diffuser.cs" />
-    <Compile Include="Assets\Sss\Util\PosInfos.cs" />
-    <Compile Include="Assets\Sss\Gear\GearHolder.cs" />
-    <Compile Include="Assets\Sss\Core\GameLoop.cs" />
-    <Compile Include="Assets\Sss\Main\BattleSceneView.cs" />
-    <Compile Include="Assets\Sss\Core\BaseSceneView.cs" />
-    <Compile Include="Assets\Sss\HanExample\GearExample.cs" />
-    <Compile Include="Assets\Sss\Core\MainGameObject.cs" />
-    <Compile Include="Assets\Sss\Gear\GearHolderBehavior.cs" />
-    <Compile Include="Assets\Sss\Util\HrsLog.cs" />
-    <Compile Include="Assets\Sss\Core\GameView.cs" />
-    <Compile Include="Assets\Sss\Core\ISetting.cs" />
-    <Compile Include="Assets\Sss\Gear\Handler\GearDispatcher.cs" />
-    <Compile Include="Assets\Sss\Main\MenuSceneView.cs" />
-    <Compile Include="Assets\Sss\Core\LogicStateChanger.cs" />
-    <Compile Include="Assets\Sss\Gear\Gear.cs" />
-    <Compile Include="Assets\Sss\Main\HrsSetting.cs" />
-    <Compile Include="Assets\Sss\Core\UIEventRegister.cs" />
-    <Compile Include="Assets\Sss\Gear\Handler\AddBehavior.cs" />
-    <Compile Include="Assets\Sss\HanExample\LogExample.cs" />
-    <Compile Include="Assets\Sss\Core\BaseSceneLogic.cs" />
-    <Compile Include="Assets\Sss\Main\HrsGameView.cs" />
+    <Compile Include="Assets\Scripts\Core\CommonCommand.cs" />
+    <Compile Include="Assets\Scripts\Extensions\ArrayExtensions.cs" />
+    <Compile Include="Assets\Scripts\Gear\Handler\GearDispatcherHandler.cs" />
+    <Compile Include="Assets\Scripts\Main\MenuSceneCommandDefine.cs" />
+    <Compile Include="Assets\Scripts\Core\FrameManager.cs" />
+    <Compile Include="Assets\Scripts\Gear\Handler\GenericGearDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Extensions\NullSafeExtensions.cs" />
+    <Compile Include="Assets\Scripts\Main\MenuSceneLogic.cs" />
+    <Compile Include="Assets\Scripts\Main\BattleSceneLogic.cs" />
+    <Compile Include="Assets\Scripts\Gear\IGearHolder.cs" />
+    <Compile Include="Assets\Scripts\Main\HrsMainGameObject.cs" />
+    <Compile Include="Assets\Scripts\Gear\Handler\CancelKey.cs" />
+    <Compile Include="Assets\Scripts\Core\GameLogic.cs" />
+    <Compile Include="Assets\Scripts\Main\BattleSceneCommandDefine.cs" />
+    <Compile Include="Assets\Scripts\Gear\Diffuser.cs" />
+    <Compile Include="Assets\Scripts\Util\PosInfos.cs" />
+    <Compile Include="Assets\Scripts\Gear\GearHolder.cs" />
+    <Compile Include="Assets\Scripts\Core\GameLoop.cs" />
+    <Compile Include="Assets\Scripts\Main\BattleSceneView.cs" />
+    <Compile Include="Assets\Scripts\Core\BaseSceneView.cs" />
+    <Compile Include="Assets\Scripts\HanExample\GearExample.cs" />
+    <Compile Include="Assets\Scripts\Extensions\ListExtensions.cs" />
+    <Compile Include="Assets\Scripts\Core\MainGameObject.cs" />
+    <Compile Include="Assets\Scripts\Gear\GearHolderBehavior.cs" />
+    <Compile Include="Assets\Scripts\Util\HrsLog.cs" />
+    <Compile Include="Assets\Scripts\Core\GameView.cs" />
+    <Compile Include="Assets\Scripts\Core\ISetting.cs" />
+    <Compile Include="Assets\Scripts\Gear\Handler\GearDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Main\MenuSceneView.cs" />
+    <Compile Include="Assets\Scripts\Core\LogicStateChanger.cs" />
+    <Compile Include="Assets\Scripts\Gear\Gear.cs" />
+    <Compile Include="Assets\Scripts\Main\HrsSetting.cs" />
+    <Compile Include="Assets\Scripts\Core\UIEventRegister.cs" />
+    <Compile Include="Assets\Scripts\Gear\Handler\AddBehavior.cs" />
+    <Compile Include="Assets\Scripts\HanExample\LogExample.cs" />
+    <Compile Include="Assets\Scripts\Core\BaseSceneLogic.cs" />
+    <Compile Include="Assets\Scripts\Main\HrsGameView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -338,23 +341,11 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.1.0b8\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Mdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Pdb">
-      <HintPath>Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil">
-      <HintPath>Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Rocks">
-      <HintPath>Library\PackageCache\com.unity.burst@1.6.0\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.5\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.1.0b8\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -728,35 +719,29 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.1.0b8\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="UniRx">
+      <HintPath>Library\ScriptAssemblies\UniRx.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\UniTask.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="PsdPlugin">
-      <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -770,17 +755,14 @@
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+    <Reference Include="UniTask.DOTween">
+      <HintPath>Library\ScriptAssemblies\UniTask.DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
@@ -794,65 +776,30 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    <Reference Include="UniTask">
+      <HintPath>Library\ScriptAssemblies\UniTask.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    <Reference Include="UniTask.Addressables">
+      <HintPath>Library\ScriptAssemblies\UniTask.Addressables.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Path.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    <Reference Include="UniTask.Linq">
+      <HintPath>Library\ScriptAssemblies\UniTask.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualScripting.Core">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{F032E989-00C9-B112-701E-CA9005ACFC79}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
