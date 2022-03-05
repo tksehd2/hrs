@@ -19,6 +19,7 @@ namespace Hrs.UI
             ///<summary>Outモーションの再生中</summary>
             PlayOutMotion,
         }
+        
         ///<summary>タイトルのアニメーション</summary>
         [SerializeField]
         private UITweenTitle TweenTitle;
@@ -36,15 +37,6 @@ namespace Hrs.UI
         }
 
         /// <summary>
-        /// スクリーンをタッチしたときのコールバック
-        /// </summary>
-        private void OnTouchScreen()
-        {
-            _state = TitleState.PlayOutMotion;
-            TweenTitle.SetMotion(UITweenTitle.MotionType.Out, OnTitleOut);
-        }
-
-        /// <summary>
         /// Update
         /// </summary>
         private void Update()
@@ -56,7 +48,8 @@ namespace Hrs.UI
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                OnTouchScreen();
+                _state = TitleState.PlayOutMotion;
+                TweenTitle.SetMotion(UITweenTitle.MotionType.Out, OnTitleOut);
             }
         }
 
