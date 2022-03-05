@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Extensions
+
+namespace Hrs.Extensions
 {
     /// <summary>
     /// 배열 확장 메서드
@@ -7,7 +8,7 @@ namespace Extensions
     public static class ArrayExtensions
     {
         /// <summary>
-        /// 인덱스로 데이터를 취득, 없으면 default
+        /// 인덱스로 데이터를 취득, 없으면 디폴트값
         /// </summary>
         /// <param name="arr">대상</param>
         /// <param name="idx">인덱스</param>
@@ -16,7 +17,46 @@ namespace Extensions
         /// <returns>데이터</returns>
         public static T GetOrDefault<T>(this T[] arr, int idx, T @default = default(T))
         {
+            if (arr == null)
+            {
+                return @default;
+            }
+
             return (idx < 0 || idx >= arr.Length) ? @default : arr[idx];
+        }
+
+        /// <summary>
+        /// 배열의 첫번째 데이터를 취득, 없으면 디폴트값
+        /// </summary>
+        /// <param name="arr">대상</param>
+        /// <param name="default">디폴트값</param>
+        /// <typeparam name="T">타입제한없음</typeparam>
+        /// <returns>데이터</returns>
+        public static T FirstOrDefault<T>(this T[] arr, T @default = default(T))
+        {
+            if (arr == null)
+            {
+                return @default;
+            }
+            
+            return arr.GetOrDefault(0, @default);
+        }
+
+        /// <summary>
+        /// 배열의 마지막 데이터를 취득, 없으면 디폴트값
+        /// </summary>
+        /// <param name="arr">대상</param>
+        /// <param name="default">디폴트값</param>
+        /// <typeparam name="T">타입제한없음</typeparam>
+        /// <returns>데이터</returns>
+        public static T LastOrDefault<T>(this T[] arr, T @default = default(T))
+        {
+            if (arr == null)
+            {
+                return @default;
+            }
+
+            return arr.GetOrDefault(arr.Length - 1, @default);
         }
 
         /// <summary>
@@ -37,7 +77,7 @@ namespace Extensions
         /// 배열을 탐색하면서 액션을 실행。
         /// </summary>
         /// <param name="arr">대상</param>
-        /// <param name="action">액션</param>
+        /// <param name="action">(T, Index)</param>
         /// <typeparam name="T">타입제한없음</typeparam>
         public static void ForEachIndexed<T>(this T[] arr, Action<T, int> action)
         {
